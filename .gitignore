@@ -3,4 +3,7 @@ __pycache__/
 *.pyc
 .env
 .pytest_cache/
-*.egg-info/
+*.egg-info/sractch_test.py
+scratch_test.py
+sractch_test.py
+scratch_test.py
