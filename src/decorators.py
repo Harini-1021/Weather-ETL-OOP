@@ -7,6 +7,8 @@ import functools
 import time
 from typing import Any, Callable
 import requests
+from src.logger_config import get_logger
+logger = get_logger(__name__)
 
 def timer(func: Callable) -> Callable:
     """Decorator that prints how long a function took to run."""
@@ -16,7 +18,7 @@ def timer(func: Callable) -> Callable:
         result = func(*args, **kwargs)
         end = time.perf_counter()
         elapsed = end - start
-        print(f"[timer] {func.__name__} took {elapsed:.4f}s")
+        logger.info(f" {func.__name__} took {elapsed:.4f}s")
         return result
     return wrapper 
 
@@ -35,9 +37,8 @@ def retry(max_attempts:int = 3, delay: float=1.0) -> Callable:
                     return func(*args, **kwargs)
                 except requests.exceptions.RequestException as e:
                     last_exception = e
-                    print(
-                        f"[retry] {func.__name__} failed on attempt "
-                        f"{attempt} / {max_attempts} : {e}"
+                    logger.warning(
+                        f"{func.__name__} failed on attempt {attempt}/{max_attempts}: {e}"
                     )
                     if attempt < max_attempts:
                         time.sleep(delay)
