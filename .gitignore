@@ -7,3 +7,6 @@ __pycache__/
 scratch_test.py
 sractch_test.py
 scratch_test.py
+pipeline.log
+reports/
+sampletest.py
