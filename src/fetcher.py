@@ -8,6 +8,7 @@ from typing import Any
 import requests
 from dotenv import load_dotenv
 from src.decorators import timer, retry
+from src.logger_config import get_logger
 
 load_dotenv()
 
